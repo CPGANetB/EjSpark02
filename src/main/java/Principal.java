@@ -1,10 +1,16 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static spark.Spark.*;
 
 public class Principal {
     private static ArrayList<Participante> participantes = new ArrayList();
     static Scanner scn = new Scanner(System.in);
 
     public static void main(String[] args) {
+        port(8888);
+
         String opc = "";
         Participante participante = new Participante();
         participantes.add(new Participante("PEPE-01", 46.0));
