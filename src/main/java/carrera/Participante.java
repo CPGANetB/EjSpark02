@@ -1,7 +1,8 @@
-public class Participante {
+package carrera;
 
-    private String nombre;
-    private Double score;
+public class Participante {
+    public String nombre;
+    public Double score;
 
     public Participante(){}
 

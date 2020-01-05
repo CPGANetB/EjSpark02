@@ -1,3 +1,4 @@
+package carrera;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -7,12 +8,12 @@ import static spark.Spark.*;
 public class Principal {
     private static ArrayList<Participante> participantes = new ArrayList();
     static Scanner scn = new Scanner(System.in);
+    Participante participante = new Participante();
+    StringBuffer nvaPag = new CreaHtml().CreaHtml("pag", participante, participantes );
 
     public static void main(String[] args) {
         port(8888);
-
         String opc = "";
-        Participante participante = new Participante();
         participantes.add(new Participante("PEPE-01", 46.0));
         participantes.add(new Participante("JUAN-02", 15.0));
         participantes.add(new Participante("PIPO-03", 89.0));
@@ -60,4 +61,5 @@ public class Principal {
         }
         return d;
     }
+
 }
