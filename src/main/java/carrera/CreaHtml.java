@@ -12,7 +12,6 @@ public class CreaHtml{
         StringBuffer buffer = new StringBuffer();
         buffer.append("<!DOCTYPE html><html lang=\"es\">\n");
         buffer.append("<head><meta charset=\"UTF-8\">\n");
-        buffer.append("html = " + html + "\n");
         if (html == "create") {
             buffer.append("<title> Crear Participante </title>\n");
             buffer.append("</head>\n");
@@ -31,7 +30,7 @@ public class CreaHtml{
             buffer.append("<title> Nuevo participante </title>\n");
             buffer.append("</head>\n");
             buffer.append("<body><div><div id=\"quever\"><h2> Nuevo participante </h2>");
-            if (parti.nombre != "") {
+            if (parti.nombre != null) {
                 buffer.append("<h3> Se agregó: </h3><table >\n");
                 buffer.append("<tr><th>Nombre: </th><th><div id=\"newNom\"><strong>" + parti.nombre  + " </strong></div></th></tr>\n");
                 buffer.append("<tr><th>Score: </th><td><div id=\"newSco\"><strong>" + parti.score + " </strong></div></td></tr>\n");
@@ -41,32 +40,25 @@ public class CreaHtml{
 
         if (html == "participants") {
             ArrayList aLis = new ArrayList(aLst);
+            aLis = aLst;
             buffer.append("<title> Participantes </title>\n");
             buffer.append("</head>\n");
-            buffer.append("<body><div><div id=\"quever\"><h2> Listado de Participantes </h2><h3><i>Lista ordenada:</i></h3><a href=\"http://localhost:8888/participants/create\">Agrega nuevo</a><br>\n");
+            buffer.append("<body><div><div id=\"quever\"><h2> Participantes </h2><h3><i>Lista ordenada:</i></h3>" +
+                    "<a href=\"http://localhost:8888/participants/create\">Agrega nuevo</a><br>\n");
             if (aLis.toString() != "") {
                 buffer.append("<br><table ><tr bgcolor=\"lightblue\"><th><u>Nombre</u></th><th><th><u>Score</u></th></th></tr>\n");
                 buffer.append("<tr id=\"ordLst\">");
                 Collections.sort(aLis, new Comparator<Participante>() {
                     @Override
                     public int compare(Participante p1, Participante p2) {
-                        // Aqui esta el truco, ahora comparamos p2 con p1 y no al reves como antes
                         return new Double(p2.getScore()).compareTo(new Double(p1.getScore()));
                     }
-                });System.out.println("340 =>>>> sort arLis.add(participan)");
+                });
                 Participante parti1 = new Participante();
                 Iterator iter = aLst.iterator();
                 while (iter.hasNext()) {
-                    parti1 = (Participante) iter.next();System.out.println("344 =>>>> iter arLis.add(participan)" + parti1);
+                    parti1 = (Participante) iter.next();
                     buffer.append("<tr><td><b>" + parti1.nombre + "</b></td><td><td><b>" + parti1.score + "</b></td></td></tr></tr>\n");
-                    //buffer.append("<tr><td><b>" +  + "</b></td><td><td><b>" + parti.score + "</b></td></td></tr></tr>\n");
-                }
-                //Participante parti = new Participante();
-                Iterator iteParti = aLis.iterator();
-                while (iteParti.hasNext()) {
-                    parti = (Participante) iteParti.next();System.out.println("344 =>>>> iter arLis.add(participan)" + parti);
-                    buffer.append("<tr><td><b>" + parti.nombre + "</b></td><td><td><b>" + parti.score + "</b></td></td></tr></tr>\n");
-                    //buffer.append("<tr><td><b>" +  + "</b></td><td><td><b>" + parti.score + "</b></td></td></tr></tr>\n");
                 }
             }
             buffer.append("<tr><td colspan=\"2\" align=\"center\"><br></td></tr></table>\n");

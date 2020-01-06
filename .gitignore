@@ -1,4 +1,5 @@
 # no hacen falta
 *.idea
 *.iml
+*.html
 target/
