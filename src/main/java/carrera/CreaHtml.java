@@ -64,8 +64,8 @@ public class CreaHtml{
             buffer.append("<tr><td colspan=\"2\" align=\"center\"><br></td></tr></table>\n");
         }
         buffer.append("</div></body></html>\n");
-        StringBuffer bufferc = new StringBuffer(buffer.toString());
-        return bufferc;
+        //StringBuffer bufferc = new StringBuffer(buffer.toString());
+        return buffer;
     }
 
 }
