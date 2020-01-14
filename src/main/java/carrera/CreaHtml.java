@@ -1,14 +1,16 @@
 package carrera;
 import java.util.*;
+import java.util.function.Consumer;
 
 public class CreaHtml{
     //private String html;
-    private Participante unParti;
-    private ArrayList<Participante> aLst;
+    //private Participante unParti;
+    //private ArrayList<Participante> aLst;
 
-    public static StringBuffer CreaHtml(String html, Participante unParti, ArrayList aLst){
+
+    public static StringBuffer CreaHtml(String html, Participante unParti, ArrayList<Participante> aLst){
         //String html = html;
-        Participante parti = unParti;
+        //Participante parti = unParti;
         StringBuffer buffer = new StringBuffer();
         buffer.append("<!DOCTYPE html><html lang=\"es\">\n");
         buffer.append("<head><meta charset=\"UTF-8\">\n");
@@ -30,36 +32,38 @@ public class CreaHtml{
             buffer.append("<title> Nuevo participante </title>\n");
             buffer.append("</head>\n");
             buffer.append("<body><div><div id=\"quever\"><h2> Nuevo participante </h2>");
-            if (parti.nombre != null) {
+            if (unParti.nombre != null) {
                 buffer.append("<h3> Se agregó: </h3><table >\n");
-                buffer.append("<tr><th>Nombre: </th><th><div id=\"newNom\"><strong>" + parti.nombre  + " </strong></div></th></tr>\n");
-                buffer.append("<tr><th>Score: </th><td><div id=\"newSco\"><strong>" + parti.score + " </strong></div></td></tr>\n");
+                buffer.append("<tr><th>Nombre: </th><th><div id=\"newNom\"><strong>" + unParti.nombre  + " </strong></div></th></tr>\n");
+                buffer.append("<tr><th>Score: </th><td><div id=\"newSco\"><strong>" + unParti.score + " </strong></div></td></tr>\n");
                 buffer.append("<tr><td colspan=\"2\" align=\"center\"><br></td></tr></table>\n");
             }
         }
 
         if (html == "participants") {
-            ArrayList aLis = new ArrayList(aLst);
-            aLis = aLst;
+            //ArrayList<Participante> aLis = new ArrayList();
+            //ArrayList aLis = new ArrayList(aLst);
+            //aLis = aLst;
             buffer.append("<title> Participantes </title>\n");
             buffer.append("</head>\n");
             buffer.append("<body><div><div id=\"quever\"><h2> Participantes </h2><h3><i>Lista ordenada:</i></h3>" +
                     "<a href=\"http://localhost:8888/participants/create\">Agrega nuevo</a><br>\n");
-            if (aLis.toString() != "") {
+            if (aLst.toString() != "") {
                 buffer.append("<br><table ><tr bgcolor=\"lightblue\"><th><u>Nombre</u></th><th><th><u>Score</u></th></th></tr>\n");
                 buffer.append("<tr id=\"ordLst\">");
-                Collections.sort(aLis, new Comparator<Participante>() {
+                Collections.sort(aLst, new Comparator<Participante>() {
                     @Override
                     public int compare(Participante p1, Participante p2) {
                         return new Double(p2.getScore()).compareTo(new Double(p1.getScore()));
                     }
                 });
-                Participante parti1 = new Participante();
-                Iterator iter = aLst.iterator();
-                while (iter.hasNext()) {
-                    parti1 = (Participante) iter.next();
+
+
+                for ( Participante parti1 : aLst) {
                     buffer.append("<tr><td><b>" + parti1.nombre + "</b></td><td><td><b>" + parti1.score + "</b></td></td></tr></tr>\n");
+
                 }
+
             }
             buffer.append("<tr><td colspan=\"2\" align=\"center\"><br></td></tr></table>\n");
         }
